@@ -68,6 +68,7 @@ public class CategoryServlet extends HttpServlet {
 
 	private void listCategory(HttpServletRequest request, HttpServletResponse response)
 			throws SQLException, IOException, ServletException {
+		
 		List<Category> listCategory = categoryDao.listAllCategory();
 		request.setAttribute("listCategory", listCategory);
 		RequestDispatcher dispatcher = request.getRequestDispatcher("jsp/Admin/category/viewCategory.jsp");

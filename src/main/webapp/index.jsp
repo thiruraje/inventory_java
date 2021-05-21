@@ -47,7 +47,7 @@
             }
 
             .title {
-                font-size: 84px;
+                font-size: 50px;
             }
 
             .links > a {
@@ -73,7 +73,7 @@
             </div>
             <div class="content">
                 <div class="title m-b-md">
-                    Inventory Management
+                    Inventory Management & Order Process
                 </div>
             </div>
         </div>

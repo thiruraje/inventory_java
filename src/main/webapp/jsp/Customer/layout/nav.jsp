@@ -8,6 +8,7 @@
 	<ul class="nav nav-pills nav-stacked">
 		<li ><a href="<%=request.getContextPath() %>/jsp/Customer/home.jsp">Home</a></li>
 		<li><a href="<%= request.getContextPath() %>/customer/addOrder">Add Order</a></li>
+		<li><a href="<%= request.getContextPath() %>/customer/viewOrder">View Order</a></li>
 		
 	</ul>
 	<br>

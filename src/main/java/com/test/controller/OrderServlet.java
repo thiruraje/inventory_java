@@ -15,6 +15,7 @@ import javax.servlet.http.HttpServletResponse;
 import com.test.dao.OrderDao;
 import com.test.model.Category;
 import com.test.model.Customer;
+import com.test.model.Order;
 import com.test.model.Product;
 
 /**
@@ -43,27 +44,24 @@ public class OrderServlet extends HttpServlet {
 				System.out.println("insertProduct");
 				insertOrder(request, response);
 				break;
-			case "/customer/deleteOrder":
-				System.out.println("deleteProduct");
-//				deleteProduct(request, response);
-				break;
-			case "/customer/editOrder":
-				System.out.println("editProduct");
-//				showEditForm(request, response);
-				break;
-			case "/customer/updateOrder":
-				System.out.println("updateProduct");
-
-//				updateProduct(request, response);
-				break;
+			
 			default:
 				System.out.println("ddfflist");
-//				listProduct(request, response);
+				listOrder(request, response);
 				break;
 			}
 		} catch (SQLException ex) {
 			throw new ServletException(ex);
 		}
+	}
+	private void listOrder(HttpServletRequest request, HttpServletResponse response)
+			throws SQLException, IOException, ServletException {
+		Customer cusObj=(Customer) request.getSession().getAttribute("currentCustomer");
+		List<Order> listOrder = orderDao.listAllOrders(cusObj);
+		
+		request.setAttribute("listOrder", listOrder);
+		RequestDispatcher dispatcher = request.getRequestDispatcher("/jsp/Customer/order/viewOrder.jsp");
+		dispatcher.forward(request, response);
 	}
 	private void showNewForm(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException, SQLException {
@@ -76,8 +74,7 @@ public class OrderServlet extends HttpServlet {
 
 	}
 	private void insertOrder(HttpServletRequest request, HttpServletResponse response)
-			throws SQLException, IOException {
-		String product_category = request.getParameter("product_category");
+			throws SQLException, IOException, ServletException {
 		String product_id = request.getParameter("product_id");
 		String product_qty = request.getParameter("product_qty");
 		
@@ -85,13 +82,18 @@ public class OrderServlet extends HttpServlet {
 		
 		PrintWriter out= response.getWriter();
 		System.out.println(cusObj);
-		System.out.println(product_category);
 		System.out.println(product_id);
 		System.out.println(product_qty);
-		orderDao.insertOrder(cusObj,product_id,Integer.parseInt(product_qty));
+		boolean  isOrder= orderDao.insertOrder(cusObj,product_id,Integer.parseInt(product_qty));
+		if(isOrder) {
+			RequestDispatcher dispatcher = request.getRequestDispatcher("/customer/viewOrder");
+			dispatcher.forward(request, response);
+		}else {
+			out.println("Qty too high  !! wait ..... !!!!!");
+		}
+		
 
-//		insertOrder.insertCategory(category);
-//		response.sendRedirect("viewCategory");
+
 	}
 
 

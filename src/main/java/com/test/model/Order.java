@@ -1,30 +1,34 @@
 package com.test.model;
 
+import java.sql.Date;
+
 public class Order {
 	
-	private int customerId;
-	private int productId;
+	private String customerMobile;
+	private String productId;
 	private int orderId;
 	private int qty;
 	private int amount;
-	public Order(int customerId, int productId, int orderId, int qty, int amount) {
+	private Date date;
+	public Order(String customerMobile, String productId, int orderId, int qty, int amount, Date date) {
 		super();
-		this.customerId = customerId;
+		this.customerMobile = customerMobile;
 		this.productId = productId;
 		this.orderId = orderId;
 		this.qty = qty;
 		this.amount = amount;
+		this.date = date;
 	}
-	public int getCustomerId() {
-		return customerId;
+	public String getCustomerMobile() {
+		return customerMobile;
 	}
-	public void setCustomerId(int customerId) {
-		this.customerId = customerId;
+	public void setCustomerMobile(String customerMobile) {
+		this.customerMobile = customerMobile;
 	}
-	public int getProductId() {
+	public String getProductId() {
 		return productId;
 	}
-	public void setProductId(int productId) {
+	public void setProductId(String productId) {
 		this.productId = productId;
 	}
 	public int getOrderId() {
@@ -45,6 +49,17 @@ public class Order {
 	public void setAmount(int amount) {
 		this.amount = amount;
 	}
+	public Date getDate() {
+		return date;
+	}
+	public void setDate(Date date) {
+		this.date = date;
+	}
+	
+	
+	
+	
+	
 	
 	
 

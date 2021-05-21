@@ -12,26 +12,10 @@ import com.test.model.Category;
 import com.test.model.Product;
 
 public class ProductDao {
-	public static Connection getConnection(){  
-		String dbDriver = "com.mysql.jdbc.Driver";
-		String dbURL = "jdbc:mysql://localhost:3306/";
-		// Database name to access
-		String dbName = "inventory";
-		String dbUsername = "root";
-		String dbPassword = "";
-		Connection con=null;  
-		try{  
-			Class.forName(dbDriver).newInstance();
-			con= DriverManager
-					.getConnection(dbURL + dbName,
-							dbUsername, 
-							dbPassword);  
-		}catch(Exception e){System.out.println(e);}  
-		return con;  
-	}
+	
 	public List<Category> listAllCategory() throws SQLException {
 		List<Category> listCategory = new ArrayList<>();
-		Connection con=ProductDao.getConnection();
+		Connection con=MySqlConnection.getConnection();
 
 		String sql = "SELECT * FROM category";
 		PreparedStatement preparedStatement = con.prepareStatement(sql);
@@ -51,7 +35,7 @@ public class ProductDao {
 		return listCategory;
 	}
 	public boolean  insertProduct(Product product) throws SQLException{ 
-		Connection con=ProductDao.getConnection();  
+		Connection con=MySqlConnection.getConnection();  
 		String sql = "INSERT INTO product (name, category, color,proId,image,rate,description,qty) VALUES (?, ?, ?,?,?,?,?,?)";
 		PreparedStatement preparedStatement = con.prepareStatement(sql);
 //		preparedStatement.setString(1,category);
@@ -74,7 +58,7 @@ public class ProductDao {
 	
 	public List<Product> listAllProduct() throws SQLException {
 		List<Product> listProduct = new ArrayList<>();
-		Connection con=ProductDao.getConnection();
+		Connection con=MySqlConnection.getConnection();
 
 		String sql = "SELECT * FROM product";
 		PreparedStatement preparedStatement = con.prepareStatement(sql);
@@ -99,11 +83,11 @@ public class ProductDao {
 		con.close();         
 		return listProduct;
 	}
-	public Product getProduct(String proid) throws SQLException {
+	public static Product getProduct(String proid) throws SQLException {
 		Product product = null;
 		String sql = "SELECT * FROM product WHERE proId = ?";
 
-		Connection con=ProductDao.getConnection();
+		Connection con=MySqlConnection.getConnection();
 
 		PreparedStatement preparedStatement = con.prepareStatement(sql);
 		preparedStatement.setString(1, proid);
@@ -130,7 +114,7 @@ public class ProductDao {
 	public boolean updateProduct(Product product) throws SQLException {
         String sql = "UPDATE product SET name = ?,category = ?,color = ?,proId = ?,image =?,rate = ?,description = ?, qty = ?";
         sql += " WHERE proId = ?";
-        Connection con=ProductDao.getConnection();
+        Connection con=MySqlConnection.getConnection();
          
         PreparedStatement preparedStatement = con.prepareStatement(sql);
         preparedStatement.setString(1, product.getProName() );
@@ -153,7 +137,7 @@ public class ProductDao {
 	public boolean deleteProduct(String proid) throws SQLException {
 		String sql = "DELETE FROM product where proId = ?";
 
-		Connection con=ProductDao.getConnection();
+		Connection con=MySqlConnection.getConnection();
 
 		PreparedStatement preparedStatement = con.prepareStatement(sql);
 		preparedStatement.setString(1, proid);

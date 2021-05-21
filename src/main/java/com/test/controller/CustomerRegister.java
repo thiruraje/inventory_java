@@ -50,7 +50,7 @@ public class CustomerRegister extends HttpServlet {
 						request.getSession().setAttribute("currentCustomer", cusObj);
 						response.sendRedirect("jsp/Customer/home.jsp");
 					}else {
-						out.println("Incorrect username and password");
+						out.println("Mobile number Already exit !!!");
 					}
 				} catch (Exception e) {
 					// TODO Auto-generated catch block

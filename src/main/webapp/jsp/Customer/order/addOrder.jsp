@@ -24,24 +24,7 @@
 									<div class="box-body">
 
 										<div class="row">
-											<div class="col-sm-6">
-												<div class="form-group">
-													<div class="col-sm-12">
-														<label>Product Category</label> <select
-															name="product_category" class="form-control">
-															<option value="">Select Category</option>
-															<c:forEach var="cat" items="${categoryList}">
-                												
-																	<option value="<c:out value="${cat.category_name}" />"><c:out
-																		value="${cat.category_name}" /></option>
-																	                                                       
-            												</c:forEach>
-
-														</select>
-													</div>
-												</div>
-											</div>
-											<div class="col-sm-6">
+										<div class="col-sm-6">
 												<div class="form-group">
 													<div class="col-sm-12">
 														<label>Product</label> <select
@@ -60,10 +43,6 @@
 
 												</div>
 											</div>
-
-										</div>
-										<div class="row">
-											
 											<div class="col-sm-6">
 												<div class="form-group">
 													<div class="col-sm-12">
@@ -75,7 +54,10 @@
 												</div>
 											</div>
 
+											
+
 										</div>
+										
 										<br>
 										<div align="center">
 											<button type="submit" class="btn btn-info">Get

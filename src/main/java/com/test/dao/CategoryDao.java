@@ -11,27 +11,8 @@ import java.util.List;
 import com.test.model.Category;
 
 public class CategoryDao {
-
-	public static Connection getConnection(){  
-		String dbDriver = "com.mysql.jdbc.Driver";
-		String dbURL = "jdbc:mysql://localhost:3306/";
-		// Database name to access
-		String dbName = "inventory";
-		String dbUsername = "root";
-		String dbPassword = "";
-		Connection con=null;  
-		try{  
-			Class.forName(dbDriver).newInstance();
-			con= DriverManager
-					.getConnection(dbURL + dbName,
-							dbUsername, 
-							dbPassword);  
-		}catch(Exception e){System.out.println(e);}  
-		return con;  
-	}
-
 	public boolean  insertCategory(String category) throws SQLException{ 
-		Connection con=CategoryDao.getConnection();  
+		Connection con=MySqlConnection.getConnection();  
 		String sql = "INSERT INTO category (category_name) VALUES (?)";
 		PreparedStatement preparedStatement = con.prepareStatement(sql);
 		preparedStatement.setString(1,category);
@@ -44,7 +25,7 @@ public class CategoryDao {
 
 	public List<Category> listAllCategory() throws SQLException {
 		List<Category> listCategory = new ArrayList<>();
-		Connection con=CategoryDao.getConnection();
+		Connection con=MySqlConnection.getConnection();
 
 		String sql = "SELECT * FROM category";
 		PreparedStatement preparedStatement = con.prepareStatement(sql);
@@ -67,7 +48,7 @@ public class CategoryDao {
 		Category category = null;
 		String sql = "SELECT * FROM category WHERE id = ?";
 
-		Connection con=CategoryDao.getConnection();
+		Connection con=MySqlConnection.getConnection();
 
 		PreparedStatement preparedStatement = con.prepareStatement(sql);
 		preparedStatement.setInt(1, id);
@@ -86,7 +67,7 @@ public class CategoryDao {
 	public boolean updateCategory(Category category) throws SQLException {
 		String sql = "UPDATE category SET category_name = ?";
 		sql += " WHERE id = ?";
-		Connection con=CategoryDao.getConnection();
+		Connection con=MySqlConnection.getConnection();
 
 		PreparedStatement preparedStatement = con.prepareStatement(sql);
 		preparedStatement.setString(1,category.getCategory_name());
@@ -99,7 +80,7 @@ public class CategoryDao {
 	public boolean deleteCategory(int id) throws SQLException {
 		String sql = "DELETE FROM category where id = ?";
 
-		Connection con=CategoryDao.getConnection();
+		Connection con=MySqlConnection.getConnection();
 
 		PreparedStatement preparedStatement = con.prepareStatement(sql);
 		preparedStatement.setInt(1, id);

@@ -10,7 +10,8 @@
 		<li><a href="<%= request.getContextPath() %>/viewCategory">View Category</a></li>
 		<li><a href="<%= request.getContextPath() %>/product/addProduct">Add Products</a></li>
 		<li><a href="<%= request.getContextPath() %>/product/viewProduct">View Products</a></li>
-		<li><a href="">Customers</a></li>
+		<li><a href="<%= request.getContextPath() %>/order/viewOrder">Order</a></li>
+		<li><a href="<%= request.getContextPath() %>/order/viewShipping">Shipment</a></li>
 	</ul>
 	<br>
 </div>

@@ -77,6 +77,7 @@ public class ProductServlet extends HttpServlet {
 
 	private void showNewForm(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException, SQLException {
+		
 		List<Category> categoryList =productDao.listAllCategory();
 		request.setAttribute("categoryList", categoryList);
 		RequestDispatcher dispatcher = request.getRequestDispatcher("/jsp/Admin/product/addProduct.jsp");

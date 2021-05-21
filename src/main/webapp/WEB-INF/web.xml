@@ -43,6 +43,18 @@
 		<url-pattern>/customer/deleteOrder</url-pattern>
 		
 	</servlet-mapping>
+	<servlet>
+		<servlet-name>ShippingServlet</servlet-name>
+		<servlet-class>com.test.controller.ShippingServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>ShippingServlet</servlet-name>
+		<url-pattern>/order/viewOrder</url-pattern>
+		<url-pattern>/order/addShipping</url-pattern>
+		<url-pattern>/order/viewShipping</url-pattern>
+		<url-pattern>/order/generateBill</url-pattern>
+		
+	</servlet-mapping>
 	
 	 <servlet-mapping>
         <servlet-name>default</servlet-name>
